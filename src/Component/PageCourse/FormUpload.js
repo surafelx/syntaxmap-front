@@ -57,7 +57,7 @@ class FormUpload extends React.Component {
     console.log(e);
     
     if (localStorage.getItem('jstoken') !== "") {
-        fetch("http://localhost:8000" + "/userupload",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/userupload",{
         method: "POST",
         body: JSON.stringify({
             sentence: this.state.sentence,

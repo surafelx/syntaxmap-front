@@ -17,7 +17,7 @@ class FormAddQuestion extends React.Component {
     }
 
   componentDidMount() {
-    fetch("http://localhost:8000" + "/course")
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/course")
     .then(res =>res.json())
     .then((res) => {
         this.setState({listCourse: res.courses})
@@ -28,7 +28,7 @@ class FormAddQuestion extends React.Component {
     e.preventDefault();
     console.log(e);
     
-    fetch("http://localhost:8000" + "/quiz",{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/quiz",{
     method: "POST",
     body: JSON.stringify({
         quiz_data: this.state.answer,

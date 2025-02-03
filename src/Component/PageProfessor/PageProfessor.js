@@ -22,7 +22,7 @@ class PageProfessor extends React.Component {
   componentDidMount() {
     console.log("componentDidMount");
     //get Classes
-    fetch("http://localhost:8000" + "/classe/user/",
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/classe/user/",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -39,7 +39,7 @@ class PageProfessor extends React.Component {
       }
     });
     //get result batch
-    /*fetch("http://localhost:8000" + "/dashboard/user/",
+    /*fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dashboard/user/",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -56,7 +56,7 @@ class PageProfessor extends React.Component {
       }
     });*/
     //get wrong question id
-    /*fetch("http://localhost:8000" + "/mistakeQuestion/user",
+    /*fetch("https://syntaxmap-back-p4ve.onrender.com" + "/mistakeQuestion/user",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -79,7 +79,7 @@ class PageProfessor extends React.Component {
           console.log(question_ids);
           this.setState({wrongQuestionId: tmp});
           //get wrong question by their id
-          fetch("http://localhost:8000" + "/questions/notepad",{
+          fetch("https://syntaxmap-back-p4ve.onrender.com" + "/questions/notepad",{
           method: "POST",
           body: JSON.stringify({
               question_ids: question_ids

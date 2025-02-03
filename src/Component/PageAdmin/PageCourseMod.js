@@ -22,7 +22,7 @@ class PageCourseMod extends React.Component {
     console.log(localStorage.getItem("test"));
     //fetch("http://localhost:8080" + this.state.pathname).then(res =>res.json()).then((res) => {this.setState({Title:res[0].course_title, TextCourse:res[0].course_data})});
 
-    fetch("http://localhost:8000" + "/course")
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/course")
         .then(res =>res.json())
             .then((res) => {
                 this.setState({Courses: res.courses})
@@ -37,7 +37,7 @@ class PageCourseMod extends React.Component {
     console.log(e.target[1].value);
     console.log(e.target[2].value);
     console.log(e.target[3].value);
-    fetch("http://localhost:8000" + "/course/" + e.target[0].value,{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/course/" + e.target[0].value,{
     method:'PUT',
     body: JSON.stringify({
                 course_id: e.target[0].value,
@@ -61,8 +61,8 @@ class PageCourseMod extends React.Component {
   }
 
   delete() {
-        console.log("http://localhost:8000" + '/course/' + this.state.courseIdDelete);
-        fetch("http://localhost:8000" + '/course/' + this.state.courseIdDelete,{
+        console.log("https://syntaxmap-back-p4ve.onrender.com" + '/course/' + this.state.courseIdDelete);
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + '/course/' + this.state.courseIdDelete,{
         method:'DELETE',
         headers: {
                 "Content-type": "application/json; charset=UTF-8",

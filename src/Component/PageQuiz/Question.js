@@ -36,7 +36,7 @@ class Question extends React.Component {
   }
 
   reportQuestion() {
-    fetch("http://localhost:8000" + "/report_question",{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/report_question",{
     method: "PUT",
     body: JSON.stringify({
         question_title: this.state.question

@@ -25,7 +25,7 @@ class PageCourse extends React.Component {
     console.log("componentDidMount");
     console.log(localStorage.getItem("test"));
     
-    fetch("http://localhost:8000" + this.state.pathname)
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + this.state.pathname)
         .then(res =>res.json())
             .then((res) => {
                 this.setState({Title:res.courses[0].course_title, TextCourse:res.courses[0].course_data, Course_id:res.courses[0].course_id})

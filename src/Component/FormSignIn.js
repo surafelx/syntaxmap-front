@@ -22,7 +22,7 @@ class FormSignIn extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(e);
-    fetch("http://localhost:8000" + "/user/register",{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/user/register",{
     method: "POST",
     body: JSON.stringify({
         user_name: this.state.username,

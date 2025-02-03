@@ -16,7 +16,7 @@ class PageCreatePassword extends React.Component {
   }
 
   componentDidMount() {
-      fetch("http://localhost:8000" + "/token/check",{
+      fetch("https://syntaxmap-back-p4ve.onrender.com" + "/token/check",{
             method: "Get",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -38,7 +38,7 @@ class PageCreatePassword extends React.Component {
   handleSubmit = e => {
         e.preventDefault();
         if (this.state.password === this.state.checkPassword) {
-        fetch("http://localhost:8000" + "/user/password",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/user/password",{
         method: "POST",
         body: JSON.stringify({
             user_password: this.state.password

@@ -11,7 +11,7 @@ class Dictionnary extends React.Component {
      
 
     getWords(){
-        fetch("http://localhost:8000" + "/dictionnary/user",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dictionnary/user",{
         method: "GET",
         headers: {
             "Authorization" : localStorage.getItem('jstoken')

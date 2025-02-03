@@ -19,7 +19,7 @@ class PageNotepad extends React.Component {
   componentDidMount() {
     console.log("componentDidMount");
     //get result batch
-    fetch("http://localhost:8000" + "/dashboard/user/",
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dashboard/user/",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -36,7 +36,7 @@ class PageNotepad extends React.Component {
       }
     });
     //get words
-    fetch("http://localhost:8000" + "/dictionnary/user/",
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dictionnary/user/",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -53,7 +53,7 @@ class PageNotepad extends React.Component {
       }
     });
     //get notes
-    fetch("http://localhost:8000" + "/notepad/user/",
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/notepad/user/",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -70,7 +70,7 @@ class PageNotepad extends React.Component {
       }
     });
     //get wrong question id
-    fetch("http://localhost:8000" + "/mistakeQuestion/user",
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/mistakeQuestion/user",
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
@@ -93,7 +93,7 @@ class PageNotepad extends React.Component {
           console.log(question_ids);
           this.setState({wrongQuestionId: tmp});
           //get wrong question by their id
-          fetch("http://localhost:8000" + "/questions/notepad",{
+          fetch("https://syntaxmap-back-p4ve.onrender.com" + "/questions/notepad",{
           method: "POST",
           body: JSON.stringify({
               question_ids: question_ids
@@ -126,7 +126,7 @@ class PageNotepad extends React.Component {
     console.log(e.target[1].value);
     console.log(e.target[2].value);
     console.log(e.target[3].value);
-    fetch("http://localhost:8000" + "/notepad/" + e.target[0].value,{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/notepad/" + e.target[0].value,{
     method:'PUT',
     body: JSON.stringify({
                 note_id: e.target[0].value,

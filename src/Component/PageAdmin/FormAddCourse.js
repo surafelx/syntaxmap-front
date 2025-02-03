@@ -27,7 +27,7 @@ class FormAddCourse extends React.Component {
     e.preventDefault();
     console.log(e);
     //if (localStorage.getItem('jstoken') !== "") {
-        fetch("http://localhost:8000" + "/course",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/course",{
         method: "POST",
         body: JSON.stringify({
                 course_title: this.state.title,

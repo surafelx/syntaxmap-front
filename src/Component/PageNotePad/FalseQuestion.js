@@ -11,7 +11,7 @@ class FalseQuestion extends React.Component {
      
 
     getWords(){
-        fetch("http://localhost:8000" + "",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "",{
         method: "GET",
         headers: {
             "Authorization" : localStorage.getItem('jstoken')

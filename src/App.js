@@ -52,7 +52,7 @@ class App extends React.Component {
             .catch(err => console.log(err))
             );
             if (localStorage.getItem('jstoken') !== "") {
-                fetch("http://localhost:8000" + "/dictionnary",
+                fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dictionnary",
                   {
                   method: "POST",
                   body: JSON.stringify({

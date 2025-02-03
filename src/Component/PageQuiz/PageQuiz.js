@@ -31,7 +31,7 @@ class PageQuiz extends React.Component {
       }
    
   componentWillUnmount() {
-    fetch("http://localhost:8000" + "/notepad",{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/notepad",{
         method: "POST",
         body: JSON.stringify({
             note: this.state.note,
@@ -101,7 +101,7 @@ class PageQuiz extends React.Component {
     if (localStorage.getItem('jstoken') !== "") {
         //envoyer result batch
         console.log("envoie result");
-        fetch("http://localhost:8000" + "/dashboard",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dashboard",{
         method: "POST",
         body: JSON.stringify({
             total_question: this.state.nb_questions,
@@ -121,7 +121,7 @@ class PageQuiz extends React.Component {
         .catch((err) => {console.log(err)});
         //envoyer erreurs
         console.log("envoie erreurs");
-        fetch("http://localhost:8000" + "/mistakeQuestion",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/mistakeQuestion",{
         method: "POST",
         body: JSON.stringify({
             questions_wrong_id: this.state.idQuestionWrong,
@@ -137,7 +137,7 @@ class PageQuiz extends React.Component {
         .catch((err) => {console.log(err)});
         //update last session
         console.log("envoie last session");
-        fetch("http://localhost:8000" + "/user/last_session",{
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + "/user/last_session",{
         method: "POST",
         body: JSON.stringify({
             session: localStorage.getItem('session')
@@ -191,7 +191,7 @@ class PageQuiz extends React.Component {
         this.setState({nb_questions:e.target.value});
   }
   onStart() {
-    fetch("http://localhost:8000" + this.state.pathname,{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + this.state.pathname,{
     method: "POST",
     body: JSON.stringify({
         nb_questions: this.state.nb_questions,

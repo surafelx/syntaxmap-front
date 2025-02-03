@@ -37,7 +37,7 @@ class PageQuestionMod extends React.Component {
   componentDidMount() {
     console.log("componentDidMount");
     console.log(localStorage.getItem("test"));
-    fetch("http://localhost:8000" + "/quiz")
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/quiz")
         .then(res =>res.json())
             .then((res) => {
                 this.setState({Questions: res.questions, QuestionsFiltered: res.questions})
@@ -47,7 +47,7 @@ class PageQuestionMod extends React.Component {
 
   updateQuestion = e => {
     e.preventDefault();
-    fetch("http://localhost:8000" + "/quiz/" + e.target[0].value,{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/quiz/" + e.target[0].value,{
     method:'PUT',
     body: JSON.stringify({
                 question_id: e.target[0].value,
@@ -75,8 +75,8 @@ class PageQuestionMod extends React.Component {
   }
 
   delete() {
-        console.log("http://localhost:8000" + '/quiz/' + this.state.questionIdDelete);
-        fetch("http://localhost:8000" + '/quiz/' + this.state.questionIdDelete,{
+        console.log("https://syntaxmap-back-p4ve.onrender.com" + '/quiz/' + this.state.questionIdDelete);
+        fetch("https://syntaxmap-back-p4ve.onrender.com" + '/quiz/' + this.state.questionIdDelete,{
         method:'DELETE',
         headers: {
                 "Content-type": "application/json; charset=UTF-8",

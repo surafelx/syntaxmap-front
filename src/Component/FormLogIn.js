@@ -22,7 +22,7 @@ class FormLogIn extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log(e);
-    fetch("http://localhost:8000" + "/user/login",{
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/user/login",{
     method: "POST",
     body: JSON.stringify({
         user_password: this.state.password,

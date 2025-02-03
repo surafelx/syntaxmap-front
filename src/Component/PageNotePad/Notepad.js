@@ -9,7 +9,7 @@ class Notepad extends React.Component {
       }
 
     componentDidMount(){
-      fetch("http://localhost:8000" + "/userupload/user/" + this.props.course_id,
+      fetch("https://syntaxmap-back-p4ve.onrender.com" + "/userupload/user/" + this.props.course_id,
       {
       headers:
         {"Authorization" : localStorage.getItem('jstoken')}
