@@ -1,7 +1,6 @@
 import React from "react";
 import Course from "./Course.js";
 import FormUpload from "./FormUpload.js";
-import axios from 'axios'
 
 class PageCourse extends React.Component {
   constructor(props) {
@@ -25,17 +24,20 @@ class PageCourse extends React.Component {
     console.log("componentDidMount");
     console.log(localStorage.getItem("test"));
 
-    axios
-      .get("https://syntaxmap-back-p4ve.onrender.com" + this.state.pathname)
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + this.state.pathname, {
+      method: "GET", // You can change this to POST/PUT if necessary
+      headers: {
+        "Content-Type": "application/json", // Set appropriate headers
+      },
+      credentials: "include", // Use 'include' to send cookies (or omit if not needed)
+    })
+      .then((res) => res.json())
       .then((res) => {
         this.setState({
-          Title: res.data.courses[0].course_title,
-          TextCourse: res.data.courses[0].course_data,
-          Course_id: res.data.courses[0].course_id,
+          Title: res.courses[0].course_title,
+          TextCourse: res.courses[0].course_data,
+          Course_id: res.courses[0].course_id,
         });
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
       });
   }
   handleClickLeft() {
