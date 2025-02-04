@@ -176,7 +176,7 @@ class PageQuiz extends React.Component {
   }
 
   goBackToCourse() {
-        window.location.replace(process.env.REACT_APP_TENSEMAP_URL);
+        window.location.replace("https://inquisitive-sunburst-5396b5.netlify.app/tensemap");
   }
 
   handleTime = e => {
