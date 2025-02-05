@@ -1,5 +1,5 @@
 module.export = {
 	local: "http://localhost:3000",
-	prod: "https://linguistic-com.herokuapp.com",
-	qa: "https://linguistic-com-qa.herokuapp.com"
+	prod: "https://syntaxmap-front-2z2b.onrender.com",
+	qa: "https://syntaxmap-front-2z2b.onrender.com"
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./css/App.css";
 import "./css/CoursePage.css";
 import PageCourse from "./Component/PageCourse/PageCourse.js";
@@ -102,34 +102,37 @@ class App extends React.Component {
         <meta httpEquiv="Pragma" content="no-cache" />
         <meta httpEquiv="Expires" content="0" />
         <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/addquestion" component={PageQuestionMod} />
-          <Route path="/admincourse" component={PageCourseMod} />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/addquestion" component={PageQuestionMod} />
+            <Route path="/admincourse" component={PageCourseMod} />
 
-          <Route path="/professor" component={PageProfessor} />
+            <Route path="/professor" component={PageProfessor} />
 
-          <Route path="/notepad" component={PageNotepad} />
+            <Route path="/notepad" component={PageNotepad} />
 
-          <Route path="/confirmation/:token" component={PageCreatePassword} />
-          <Route path="/confirmation/" component={PageCreatePassword} />
-          <Route
-            path="/passwordforgotten/:token"
-            component={PageCreatePassword}
-          />
+            <Route path="/confirmation/:token" component={PageCreatePassword} />
+            <Route path="/confirmation/" component={PageCreatePassword} />
+            <Route
+              path="/passwordforgotten/:token"
+              component={PageCreatePassword}
+            />
 
-          <Route exact path="/login_register" component={PageLoginRegister} />
+            <Route exact path="/login_register" component={PageLoginRegister} />
 
-          <Route exact path="/tensemap" component={TenseMap} />
-          <Route exact path="/map/cond" component={CondMap} />
-          <Route exact path="/map/future" component={FutureMap} />
-          <Route exact path="/map/mod" component={ModMap} />
-          <Route exact path="/map/mod past" component={ModEdMap} />
-          <Route exact path="/quiz" component={PageQuiz} />
+            <Route exact path="/tensemap" component={TenseMap} />
+            <Route exact path="/map/cond" component={CondMap} />
+            <Route exact path="/map/future" component={FutureMap} />
+            <Route exact path="/map/mod" component={ModMap} />
+            <Route exact path="/map/mod past" component={ModEdMap} />
+            <Route exact path="/quiz" component={PageQuiz} />
 
-          <Route exact path="/course/:title" component={PageCourse} />
-          <Route exact path="/quiz/:course" component={PageQuiz} />
-        </Switch>
+            <Route exact path="/course/:title" component={PageCourse} />
+            <Route exact path="/quiz/:course" component={PageQuiz} />
+          </Switch>
+        </Router>
+
         <ModalDefinition
           word={this.state.word}
           definition={this.state.definition}
