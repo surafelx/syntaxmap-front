@@ -26,10 +26,7 @@ class PageCourse extends React.Component {
 
     fetch("https://syntaxmap-back-p4ve.onrender.com" + this.state.pathname, {
       method: "GET", // You can change this to POST/PUT if necessary
-      headers: {
-        "Content-Type": "application/json", // Set appropriate headers
-      },
-      credentials: "include", // Use 'include' to send cookies (or omit if not needed)
+      headers: { Authorization: localStorage.getItem("jstoken") },
     })
       .then((res) => res.json())
       .then((res) => {
