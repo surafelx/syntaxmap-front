@@ -21,6 +21,7 @@ class PageCourse extends React.Component {
   }
 
   componentDidMount() {
+    document.title = "Course | TenseMap";
     console.log("componentDidMount");
     console.log(localStorage.getItem("test"));
 

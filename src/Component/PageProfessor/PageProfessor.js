@@ -1,43 +1,41 @@
 import React from "react";
 import { Fragment } from "react";
-import FormAddClasse from "./FormAddClasse.js"
+import FormAddClasse from "./FormAddClasse.js";
 
 class PageProfessor extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            classes: [],
-            students: []
-        };
-      }
-      /*
+  constructor(props) {
+    super(props);
+    this.state = {
+      classes: [],
+      students: [],
+    };
+  }
+  /*
       
             reports: [],
             wrongQuestionId:[],
             wrongQuestionText:[]
       */
-  componentDidUpdate(){
-  }
+  componentDidUpdate() {}
 
   componentDidMount() {
+    document.title = "Professor | TenseMap";
     console.log("componentDidMount");
     //get Classes
-    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/classe/user/",
-      {
-      headers:
-        {"Authorization" : localStorage.getItem('jstoken')}
-      })
-      .then(res =>res.json())
+    fetch("https://syntaxmap-back-p4ve.onrender.com" + "/classe/user/", {
+      headers: { Authorization: localStorage.getItem("jstoken") },
+    })
+      .then((res) => res.json())
       .then((res) => {
-      if (res) {
-        console.log(res);
-        let tmp = [];
+        if (res) {
+          console.log(res);
+          let tmp = [];
           for (var i = 0; i < res.classes.length; i++) {
-              tmp.push(res.classes[i]);
+            tmp.push(res.classes[i]);
           }
-          this.setState({classes: tmp});
-      }
-    });
+          this.setState({ classes: tmp });
+        }
+      });
     //get result batch
     /*fetch("https://syntaxmap-back-p4ve.onrender.com" + "/dashboard/user/",
       {
@@ -105,13 +103,11 @@ class PageProfessor extends React.Component {
     return (
       <div>
         <h2>Classes</h2>
-        <FormAddClasse/>
+        <FormAddClasse />
         <div>
-            {
-                this.state.classes.map((classe,index) => {
-                    return <h4>{classe.classe_name}</h4>
-                })
-            }
+          {this.state.classes.map((classe, index) => {
+            return <h4>{classe.classe_name}</h4>;
+          })}
         </div>
       </div>
     );

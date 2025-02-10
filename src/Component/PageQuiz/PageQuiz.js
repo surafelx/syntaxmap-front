@@ -63,7 +63,9 @@ class PageQuiz extends React.Component {
         .catch((err) => {console.log(err)});
   }
 
+
   componentDidMount() {
+    document.title = "Quiz | TenseMap"
     window.addEventListener('blur', ()=>{ this.setState({isPause: true}); });
     window.addEventListener('focus', ()=>{ if (!this.state.popins) 
                                             this.setState({isPause: false}); 
