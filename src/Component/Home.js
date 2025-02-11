@@ -6,7 +6,7 @@ const HeroContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 40vh;
   background: linear-gradient(to right, #6a11cb, #2575fc);
   text-align: center;
   color: white;
