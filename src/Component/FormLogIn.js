@@ -1,5 +1,9 @@
 import React from "react";
 import axios from "axios";
+import {
+  NavLogo,
+} from "./Navbar/NavbarElements";
+import logo from "../img/LC-1.jpg";
 
 class FormLogIn extends React.Component {
   constructor(props) {
@@ -12,135 +16,144 @@ class FormLogIn extends React.Component {
   }
 
   componentDidMount() {
-    document.title = "Login | TenseMap";
+    document.title = "Login | Syntax Map";
   }
 
-  handleEmail = (e) => {
-    this.setState({ email: e.target.value });
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  handlePassword = (e) => {
-    this.setState({ password: e.target.value });
-  };
-
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("https://syntaxmap-back-p4ve.onrender.com/user/login", {
-        user_password: this.state.password,
+    try {
+      const response = await axios.post("https://syntaxmap-back-p4ve.onrender.com/user/login", {
         user_email_address: this.state.email,
-      })
-      .then((response) => {
-        console.log(response.data);
-
-        // Store JWT token in localStorage
-        localStorage.setItem("jstoken", response.data.jwt?.token);
-
-        // Get today's date and format it
-        let date = new Date();
-        let formattedDate = date.getFullYear() + "-";
-        let tmp = date.getMonth() + 1;
-        formattedDate += tmp < 10 ? "0" + tmp : tmp;
-        formattedDate += "-" + date.getDate();
-
-        // Session handling
-        let session = response.data.last_session;
-        if (!session || session.split("_")[0] !== formattedDate) {
-          session = formattedDate + "_1";
-        } else {
-          let next_session = parseInt(session.split("_")[1]) + 1;
-          session = formattedDate + "_" + next_session;
-        }
-
-        // Store session in localStorage
-        localStorage.setItem("session", session);
-
-        // Redirect to the tensemap page
-        window.location.replace("https://syntaxmap-front-2z2b.onrender.com");
-      })
-      .catch((error) => {
-        console.error("Error during login:", error);
-        this.setState({
-          error: "Invalid credentials. Please try again.",
-        });
+        user_password: this.state.password,
       });
+
+      localStorage.setItem("jstoken", response.data.jwt?.token);
+      let date = new Date();
+      let formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${date.getDate()}`;
+      let session = response.data.last_session;
+      session =
+        session && session.startsWith(formattedDate)
+          ? `${formattedDate}_${parseInt(session.split("_")[1]) + 1}`
+          : `${formattedDate}_1`;
+
+      localStorage.setItem("session", session);
+      window.location.replace("https://syntaxmap-front-2z2b.onrender.com");
+    } catch (error) {
+      console.error("Error during login:", error);
+      this.setState({ error: "Invalid credentials. Please try again." });
+    }
   };
 
   render() {
     const { error } = this.state;
 
     return (
-      <div style={styles.container}>
-        <h2 style={styles.title}>Log In</h2>
-        <form onSubmit={this.handleSubmit} style={styles.form}>
-          <label style={styles.label}>Email</label>
-          <input
-            type="email"
-            onChange={this.handleEmail}
-            required
-            style={styles.input}
-          />
-          <br />
-          <label style={styles.label}>Password</label>
-          <input
-            type="password"
-            onChange={this.handlePassword}
-            required
-            style={styles.input}
-          />
-          <br />
-          <input type="submit" value="Login" style={styles.submitBtn} />
-        </form>
-        {error && <p style={styles.error}>{error}</p>}
+      <div style={styles.background}>
+        <div style={styles.container}>
+          <NavLogo to="/">
+            <img
+              src={logo}
+              style={{
+                height: "120px",
+                maxWidth: "100%",
+                verticalAlign: "middle",
+              }}
+            />
+          </NavLogo>
+          <h2 style={styles.title}>Syntax Map</h2>
+          <form onSubmit={this.handleSubmit} style={styles.form}>
+            <label style={styles.label}>Email</label>
+            <input
+              type="email"
+              name="email"
+              onChange={this.handleChange}
+              required
+              style={styles.input}
+            />
+            <label style={styles.label}>Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={this.handleChange}
+              required
+              style={styles.input}
+            />
+            <button type="submit" style={styles.submitBtn}>
+              Login
+            </button>
+          </form>
+          {error && <p style={styles.error}>{error}</p>}
+        </div>
       </div>
     );
   }
 }
 
 const styles = {
+  background: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "linear-gradient(135deg, #2575fc, #6a11cb)",
+  },
   container: {
-    maxWidth: "400px",
-    margin: "0 auto",
+    width: "350px",
     padding: "20px",
-    backgroundColor: "#f9f9f9",
-    borderRadius: "8px",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+    backgroundColor: "white",
+    borderRadius: "10px",
+    boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+    textAlign: "center",
+  },
+  logo: {
+    width: "100px",
+    marginBottom: "10px",
   },
   title: {
-    fontSize: "2rem",
-    textAlign: "center",
+    fontSize: "1.8rem",
+    fontWeight: "bold",
+    color: "#2575fc",
     marginBottom: "20px",
   },
   form: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
   },
   label: {
     fontSize: "1rem",
-    marginBottom: "8px",
     color: "#333",
+    textAlign: "left",
+    marginBottom: "5px",
   },
   input: {
     width: "100%",
     padding: "10px",
     marginBottom: "15px",
-    borderRadius: "4px",
     border: "1px solid #ccc",
+    borderRadius: "5px",
     fontSize: "1rem",
   },
   submitBtn: {
-    padding: "10px 20px",
-    backgroundColor: "#007bff",
-    color: "#fff",
+    padding: "12px",
+    backgroundColor: "#2575fc",
+    color: "white",
     border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
+    borderRadius: "5px",
     fontSize: "1rem",
+    cursor: "pointer",
+    transition: "background 0.3s",
+  },
+  submitBtnHover: {
+    backgroundColor: "#1a5edb",
   },
   error: {
     color: "red",
-    textAlign: "center",
     fontSize: "1rem",
     marginTop: "15px",
   },

@@ -3,8 +3,7 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-  background: white;
-  color: #2575fc;
+  background: ${({ isNotHome }) => (!isNotHome ? "white" : "#2575fc")};
   height: 85px;
   display: flex;
   justify-content: space-between;
@@ -26,12 +25,12 @@ export const NavLogo = styled(Link)`
 export const NavLink = styled(Link)`
   cursor: pointer;
   font-weight: bold;
-  color: #333;
+   color: ${({ isNotHome }) => (!isNotHome ? "#333" : "white")};
   text-decoration: none;
   padding: 10px;
   transition: color 0.3s ease-in-out;
   &:hover {
-    color: #2575fc;
+     color: ${({ isNotHome }) => (!isNotHome ? "#2575fc" : "#333 ")};
   }
 `;
 
@@ -58,10 +57,19 @@ export const NavMenu = styled.div`
 export const NavDropDownContent = styled.div`
   display: none;
   position: absolute;
-  background-color: orangered;
+  background: ${({ isNotHome }) => (!isNotHome ? "#2575fc" : "white")};
+   color: ${({ isNotHome }) => (!isNotHome ? "white" : "#2575fc")};
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+
+   &:hover {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+   color: #333
+  }
 `;
 
 export const NavMenuDropDown = styled.div`
@@ -73,15 +81,20 @@ export const NavMenuDropDown = styled.div`
   height: 100%;
   cursor: pointer;
   position: relative;
-  color: black;
+  font-weight: bold;
+    color: ${({ isNotHome }) => (!isNotHome ? "#333" : "white")};
 
   &.active,
   &:hover {
-    color: black;
+     color: ${({ isNotHome }) => (!isNotHome ? "#2575fc" : "#333 ")};
   }
 
   &:hover ${NavDropDownContent} {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    color: #333
   }
 `;
 

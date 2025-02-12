@@ -86,9 +86,7 @@ const Home = () => {
         </HeroSubtitle>
         <ButtonContainer>
           <HeroButton to="/tensemap">Explore Tense Map</HeroButton>
-          <HeroButton to="/addquestion">Add a Question</HeroButton>
-          <HeroButton to="/login_register">Log in / Register</HeroButton>
-          <HeroButton to="/notepad">Open Notepad</HeroButton>
+          <HeroButton to="/login_register">Get Started</HeroButton>
         </ButtonContainer>
       </HeroContainer>
 

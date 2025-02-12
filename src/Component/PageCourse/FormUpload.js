@@ -103,13 +103,13 @@ class FormUpload extends React.Component {
             placeholder="Enter your example"
             style={styles.input}
           />
-          <br />
-          <input
+          {/* <br /> */}
+          {/* <input
             type="file"
             onChange={this.handleImg}
             accept="image/png, image/jpeg, image/gif"
             style={styles.inputFile}
-          />
+          /> */}
           <br />
           <input type="submit" value="Submit" style={styles.submitBtn} />
           <br />

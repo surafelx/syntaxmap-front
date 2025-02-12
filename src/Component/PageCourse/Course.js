@@ -14,6 +14,7 @@ class Course extends Component {
   }
 
   componentDidMount() {
+    console.log(localStorage.getItem("jstoken"), "TOken exists?");
     this.fetchExamples();
   }
 
@@ -29,15 +30,11 @@ class Course extends Component {
     let examples = [];
 
     if (localStorage.getItem("jstoken")) {
-      fetch(
-        "https://syntaxmap-back-p4ve.onrender.com/userupload/user/" +
-          this.props.course_id,
-        {
-          headers: {
-            Authorization: localStorage.getItem("jstoken"),
-          },
-        }
-      )
+      fetch("https://syntaxmap-back-p4ve.onrender.com/userupload/user/" + this.props.course_id, {
+        headers: {
+          Authorization: localStorage.getItem("jstoken"),
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data) {
@@ -46,6 +43,7 @@ class Course extends Component {
           }
         })
         .catch((err) => {
+          console.log("Encountering Error");
           console.error(err);
           this.setState({ error: "Failed to fetch examples", loading: false });
         });
